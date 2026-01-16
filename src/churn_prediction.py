@@ -1,10 +1,4 @@
-"""
-Customer Churn Prediction Model (Binary Classification)
-Author: Senior Data Scientist
-Date: January 2026
 
-This module builds a supervised ML model to predict customer churn.
-"""
 
 import pandas as pd
 import numpy as np
@@ -22,18 +16,8 @@ warnings.filterwarnings('ignore')
 
 
 class ChurnPredictionModel:
-    """
-    Supervised ML model to predict customer churn.
-    
-    Features:
-    - Multiple algorithms (Logistic Regression, Random Forest, Gradient Boosting)
-    - Hyperparameter tuning
-    - Cross-validation
-    - Comprehensive evaluation metrics
-    """
     
     def __init__(self, df):
-        """Initialize with transaction dataframe."""
         self.df = df
         self.feature_df = None
         self.X_train = None
@@ -45,12 +29,6 @@ class ChurnPredictionModel:
         self.scaler = StandardScaler()
         
     def engineer_features(self, churn_threshold_days=180):
-        """
-        Engineer features for churn prediction.
-        
-        Args:
-            churn_threshold_days (int): Days of inactivity to define churn
-        """
         print("\n" + "="*60)
         print("FEATURE ENGINEERING FOR CHURN PREDICTION")
         print("="*60)
@@ -110,7 +88,6 @@ class ChurnPredictionModel:
         return features
     
     def prepare_data(self, test_size=0.2, random_state=42):
-        """Prepare train/test split."""
         print("\n" + "="*60)
         print("PREPARING TRAIN/TEST SPLIT")
         print("="*60)
@@ -141,7 +118,6 @@ class ChurnPredictionModel:
         return self.X_train, self.X_test, self.y_train, self.y_test
     
     def train_models(self):
-        """Train multiple ML models."""
         print("\n" + "="*60)
         print("TRAINING MACHINE LEARNING MODELS")
         print("="*60)
@@ -170,7 +146,6 @@ class ChurnPredictionModel:
         print(f"\n✓ Trained {len(self.models)} models successfully")
     
     def evaluate_models(self):
-        """Evaluate all models."""
         print("\n" + "="*60)
         print("MODEL EVALUATION & COMPARISON")
         print("="*60)
@@ -234,7 +209,6 @@ class ChurnPredictionModel:
         return results_df
     
     def visualize_results(self):
-        """Create comprehensive visualizations."""
         print("\n" + "="*60)
         print("CREATING VISUALIZATIONS")
         print("="*60)
@@ -328,7 +302,6 @@ class ChurnPredictionModel:
         plt.close()
     
     def save_predictions(self):
-        """Save predictions."""
         # Get predictions for all customers
         predictions = self.feature_df[['CustomerID']].copy()
         
@@ -344,7 +317,6 @@ class ChurnPredictionModel:
 
 
 def main():
-    """Main execution function."""
     # Load cleaned data
     print("Loading cleaned data...")
     df = pd.read_csv('data/online_retail_cleaned.csv')

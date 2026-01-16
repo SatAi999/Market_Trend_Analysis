@@ -1,10 +1,4 @@
-"""
-Exploratory Data Analysis Module for Retail Analysis
-Author: Senior Data Scientist
-Date: January 2026
 
-This module performs comprehensive EDA on retail transaction data.
-"""
 
 import pandas as pd
 import numpy as np
@@ -20,28 +14,12 @@ sns.set_palette("husl")
 
 
 class RetailEDA:
-    """
-    A class to perform Exploratory Data Analysis on retail data.
-    
-    Includes analysis for:
-    - Revenue metrics
-    - Top products
-    - Country-wise performance
-    - Temporal trends
-    """
     
     def __init__(self, df):
-        """
-        Initialize EDA with cleaned dataframe.
-        
-        Args:
-            df (pd.DataFrame): Cleaned retail transaction data
-        """
         self.df = df
         self.summary_stats = {}
         
     def calculate_summary_statistics(self):
-        """Calculate key business metrics."""
         print("\n" + "="*60)
         print("SUMMARY STATISTICS")
         print("="*60)
@@ -72,12 +50,6 @@ class RetailEDA:
         return self.summary_stats
     
     def analyze_top_products(self, top_n=20):
-        """
-        Analyze and visualize top products by revenue and quantity.
-        
-        Args:
-            top_n (int): Number of top products to display
-        """
         print(f"\n{'='*60}")
         print(f"TOP {top_n} PRODUCTS ANALYSIS")
         print("="*60)
@@ -124,12 +96,6 @@ class RetailEDA:
         return product_revenue
     
     def analyze_country_performance(self, top_n=15):
-        """
-        Analyze and visualize country-wise revenue.
-        
-        Args:
-            top_n (int): Number of top countries to display
-        """
         print(f"\n{'='*60}")
         print(f"TOP {top_n} COUNTRIES ANALYSIS")
         print("="*60)
@@ -178,7 +144,6 @@ class RetailEDA:
         return country_revenue
     
     def analyze_temporal_trends(self):
-        """Analyze and visualize sales trends over time."""
         print(f"\n{'='*60}")
         print("TEMPORAL TRENDS ANALYSIS")
         print("="*60)
@@ -244,7 +209,6 @@ class RetailEDA:
         return monthly_revenue
     
     def create_comprehensive_dashboard(self):
-        """Create a comprehensive EDA dashboard."""
         print(f"\n{'='*60}")
         print("CREATING COMPREHENSIVE DASHBOARD")
         print("="*60)
@@ -331,7 +295,6 @@ class RetailEDA:
 
 
 def main():
-    """Main execution function."""
     # Load cleaned data
     print("Loading cleaned data...")
     df = pd.read_csv('data/online_retail_cleaned.csv')

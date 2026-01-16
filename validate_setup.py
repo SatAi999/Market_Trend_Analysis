@@ -1,7 +1,4 @@
-"""
-Project Validation Script
-Checks if all components are properly set up
-"""
+
 
 import os
 import sys

@@ -1,6 +1,4 @@
-"""
-Performance and Results Summary
-"""
+
 import pandas as pd
 
 print("="*80)

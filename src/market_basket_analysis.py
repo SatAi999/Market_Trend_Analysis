@@ -1,10 +1,4 @@
-"""
-Market Basket Analysis Module using Apriori Algorithm
-Author: Senior Data Scientist
-Date: January 2026
 
-This module performs market basket analysis to discover product associations and bundling patterns.
-"""
 
 import pandas as pd
 import numpy as np
@@ -17,38 +11,14 @@ warnings.filterwarnings('ignore')
 
 
 class MarketBasketAnalysis:
-    """
-    A class to perform market basket analysis using Apriori algorithm.
-    
-    Features:
-    - Transaction encoding
-    - Frequent itemset mining
-    - Association rule generation
-    - Product bundling recommendations
-    """
     
     def __init__(self, df):
-        """
-        Initialize market basket analysis with cleaned dataframe.
-        
-        Args:
-            df (pd.DataFrame): Cleaned retail transaction data
-        """
         self.df = df
         self.basket_df = None
         self.frequent_itemsets = None
         self.rules = None
         
     def create_basket_format(self, min_support_items=50):
-        """
-        Convert transaction data to basket format for Apriori algorithm.
-        
-        Args:
-            min_support_items (int): Minimum number of transactions for a product
-        
-        Returns:
-            pd.DataFrame: Basket dataframe with one-hot encoding
-        """
         print("\n" + "="*60)
         print("CREATING BASKET FORMAT")
         print("="*60)
@@ -79,15 +49,6 @@ class MarketBasketAnalysis:
         return basket_binary
     
     def mine_frequent_itemsets(self, min_support=0.01):
-        """
-        Mine frequent itemsets using Apriori algorithm.
-        
-        Args:
-            min_support (float): Minimum support threshold (0-1)
-        
-        Returns:
-            pd.DataFrame: Frequent itemsets
-        """
         print("\n" + "="*60)
         print("MINING FREQUENT ITEMSETS")
         print("="*60)
@@ -124,16 +85,6 @@ class MarketBasketAnalysis:
         return frequent_itemsets
     
     def generate_association_rules(self, metric='lift', min_threshold=1.0):
-        """
-        Generate association rules from frequent itemsets.
-        
-        Args:
-            metric (str): Metric to use ('lift', 'confidence', 'support')
-            min_threshold (float): Minimum threshold for the metric
-        
-        Returns:
-            pd.DataFrame: Association rules
-        """
         print("\n" + "="*60)
         print("GENERATING ASSOCIATION RULES")
         print("="*60)
@@ -169,12 +120,6 @@ class MarketBasketAnalysis:
         return rules
     
     def display_top_rules(self, top_n=20):
-        """
-        Display top association rules.
-        
-        Args:
-            top_n (int): Number of top rules to display
-        """
         if self.rules is None or len(self.rules) == 0:
             print("\n⚠ No rules available to display")
             return
@@ -194,15 +139,6 @@ class MarketBasketAnalysis:
             print(f"   Support: {row['support']:.4f} | Confidence: {row['confidence']:.4f} | Lift: {row['lift']:.2f}")
     
     def extract_product_bundles(self, top_n=15):
-        """
-        Extract top product bundles based on association rules.
-        
-        Args:
-            top_n (int): Number of top bundles to extract
-        
-        Returns:
-            pd.DataFrame: Top product bundles
-        """
         print("\n" + "="*60)
         print(f"TOP {top_n} PRODUCT BUNDLES")
         print("="*60)
@@ -235,7 +171,6 @@ class MarketBasketAnalysis:
         return bundles
     
     def visualize_rules(self):
-        """Create comprehensive visualizations for association rules."""
         print("\n" + "="*60)
         print("CREATING MARKET BASKET VISUALIZATIONS")
         print("="*60)
@@ -297,7 +232,6 @@ class MarketBasketAnalysis:
         plt.close()
     
     def save_results(self):
-        """Save analysis results to CSV files."""
         if self.frequent_itemsets is not None:
             # Convert frozenset to string for CSV
             freq_save = self.frequent_itemsets.copy()
@@ -315,7 +249,6 @@ class MarketBasketAnalysis:
 
 
 def main():
-    """Main execution function."""
     # Load cleaned data
     print("Loading cleaned data...")
     df = pd.read_csv('data/online_retail_cleaned.csv')

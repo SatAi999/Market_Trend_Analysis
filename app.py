@@ -47,18 +47,26 @@ st.markdown("""
         border-left: 5px solid #1f77b4;
     }
     .insight-box {
-        background-color: #e8f5e9;
+        background: linear-gradient(90deg, #1565c0 0%, #43a047 100%);
+        color: #fff;
         padding: 15px;
         border-radius: 8px;
-        border-left: 4px solid #4caf50;
+        border-left: 4px solid #43a047;
         margin: 10px 0;
+        font-size: 1.1rem;
+        font-weight: 500;
+        box-shadow: 0 2px 8px rgba(21,101,192,0.08);
     }
     .warning-box {
-        background-color: #fff3e0;
+        background: linear-gradient(90deg, #263238 0%, #607d8b 100%);
+        color: #fff;
         padding: 15px;
         border-radius: 8px;
         border-left: 4px solid #ff9800;
         margin: 10px 0;
+        font-size: 1.1rem;
+        font-weight: 500;
+        box-shadow: 0 2px 8px rgba(38,50,56,0.10);
     }
     </style>
 """, unsafe_allow_html=True)
@@ -231,7 +239,7 @@ def page_overview(df):
 
 
 def page_eda(df):
-    """Exploratory Data Analysis Page."""
+    
     st.markdown('<div class="main-header">📈 Sales Trends & EDA</div>', unsafe_allow_html=True)
     
     # Revenue Trend
@@ -325,7 +333,7 @@ def page_eda(df):
 
 
 def page_segmentation(df, rfm_df):
-    """Customer Segmentation Page."""
+    
     st.markdown('<div class="main-header">👥 Customer Segmentation</div>', unsafe_allow_html=True)
     
     if rfm_df is None:
@@ -414,7 +422,7 @@ def page_segmentation(df, rfm_df):
 
 
 def page_market_basket(rules_df):
-    """Market Basket Analysis Page."""
+    
     st.markdown('<div class="main-header">🛒 Market Basket Analysis</div>', unsafe_allow_html=True)
     
     if rules_df is None or len(rules_df) == 0:
@@ -507,7 +515,7 @@ def page_market_basket(rules_df):
 
 
 def page_clv(clv_df):
-    """Customer Lifetime Value Page."""
+    
     st.markdown('<div class="main-header">💎 Customer Lifetime Value</div>', unsafe_allow_html=True)
     
     if clv_df is None:
@@ -611,7 +619,7 @@ def page_clv(clv_df):
 
 
 def page_ml_predictions(churn_pred, clv_pred, df):
-    """ML Predictions Page - Churn & CLV Predictions."""
+    
     st.markdown('<div class="main-header">Machine Learning Predictions</div>', unsafe_allow_html=True)
     
     if churn_pred is None and clv_pred is None:
@@ -859,7 +867,7 @@ def page_ml_predictions(churn_pred, clv_pred, df):
 
 
 def page_insights(df, rfm_df, clv_df, rules_df):
-    """Business Insights & Recommendations Page."""
+    
     st.markdown('<div class="main-header">💡 Business Insights & Recommendations</div>', unsafe_allow_html=True)
     
     # Key Findings
@@ -996,7 +1004,7 @@ def page_insights(df, rfm_df, clv_df, rules_df):
 
 
 def main():
-    """Main application."""
+    
     # Load data
     df, rfm_df, clv_df, rules_df, churn_pred, clv_pred = load_data()
     

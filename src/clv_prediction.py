@@ -1,10 +1,4 @@
-"""
-Customer Lifetime Value Prediction Model (Regression)
-Author: Senior Data Scientist
-Date: January 2026
 
-This module builds supervised ML regression models to predict CLV.
-"""
 
 import pandas as pd
 import numpy as np
@@ -20,18 +14,8 @@ warnings.filterwarnings('ignore')
 
 
 class CLVPredictionModel:
-    """
-    Supervised ML regression model to predict Customer Lifetime Value.
-    
-    Features:
-    - Multiple regression algorithms
-    - Cross-validation
-    - Feature engineering
-    - Comprehensive evaluation
-    """
     
     def __init__(self, df):
-        """Initialize with transaction dataframe."""
         self.df = df
         self.feature_df = None
         self.X_train = None
@@ -43,7 +27,6 @@ class CLVPredictionModel:
         self.scaler = StandardScaler()
         
     def engineer_features(self):
-        """Engineer features for CLV prediction."""
         print("\n" + "="*60)
         print("FEATURE ENGINEERING FOR CLV PREDICTION")
         print("="*60)
@@ -108,7 +91,6 @@ class CLVPredictionModel:
         return features
     
     def prepare_data(self, test_size=0.2, random_state=42):
-        """Prepare train/test split."""
         print("\n" + "="*60)
         print("PREPARING TRAIN/TEST SPLIT")
         print("="*60)
@@ -139,7 +121,6 @@ class CLVPredictionModel:
         return self.X_train, self.X_test, self.y_train, self.y_test
     
     def train_models(self):
-        """Train multiple regression models."""
         print("\n" + "="*60)
         print("TRAINING REGRESSION MODELS")
         print("="*60)
@@ -175,7 +156,6 @@ class CLVPredictionModel:
         print(f"\n✓ Trained {len(self.models)} regression models successfully")
     
     def evaluate_models(self):
-        """Evaluate all models."""
         print("\n" + "="*60)
         print("MODEL EVALUATION & COMPARISON")
         print("="*60)
@@ -234,7 +214,6 @@ class CLVPredictionModel:
         return results_df
     
     def visualize_results(self):
-        """Create comprehensive visualizations."""
         print("\n" + "="*60)
         print("CREATING VISUALIZATIONS")
         print("="*60)
@@ -307,7 +286,6 @@ class CLVPredictionModel:
         plt.close()
     
     def save_predictions(self):
-        """Save CLV predictions."""
         predictions = self.feature_df[['CustomerID', 'CLV']].copy()
         predictions.rename(columns={'CLV': 'ActualCLV'}, inplace=True)
         
@@ -324,7 +302,6 @@ class CLVPredictionModel:
 
 
 def main():
-    """Main execution function."""
     # Load cleaned data
     print("Loading cleaned data...")
     df = pd.read_csv('data/online_retail_cleaned.csv')

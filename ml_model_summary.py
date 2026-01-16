@@ -1,10 +1,4 @@
-"""
-Comprehensive ML Model Performance Summary
-Author: Senior Data Scientist  
-Date: January 2026
 
-This script generates a comprehensive summary of ALL ML models.
-"""
 
 import pandas as pd
 import numpy as np
@@ -13,14 +7,12 @@ from datetime import datetime
 
 
 def print_header(title, char="=", length=70):
-    """Print formatted header."""
     print(f"\n{char * length}")
     print(f"  {title}")
     print(f"{char * length}")
 
 
 def load_model_results():
-    """Load all model results."""
     results = {}
     
     # Check for output files
@@ -40,7 +32,6 @@ def load_model_results():
 
 
 def main():
-    """Generate comprehensive ML summary."""
     
     print("\n" + "="*70)
     print("  COMPREHENSIVE MACHINE LEARNING MODEL SUMMARY")

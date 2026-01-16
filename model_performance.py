@@ -1,6 +1,4 @@
-"""
-Machine Learning Model Performance Evaluation
-"""
+
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
@@ -13,23 +11,21 @@ print("="*80)
 print("MACHINE LEARNING MODEL PERFORMANCE".center(80))
 print("="*80)
 
-# Load data
+ 
 rfm = pd.read_csv('outputs/customer_segments.csv')
 rules = pd.read_csv('outputs/association_rules.csv')
 
-# ============================================================================
-# 1. K-MEANS CLUSTERING PERFORMANCE
-# ============================================================================
+
 print("\n🔹 K-MEANS CLUSTERING MODEL")
 print("-" * 80)
 
-# Prepare data
+ 
 X = rfm[['Recency', 'Frequency', 'Monetary']].values
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 labels = rfm['Cluster'].values
 
-# Calculate performance metrics
+ 
 silhouette = silhouette_score(X_scaled, labels)
 davies_bouldin = davies_bouldin_score(X_scaled, labels)
 calinski = calinski_harabasz_score(X_scaled, labels)
@@ -54,7 +50,7 @@ print(f"    └─ Variance ratio is {'excellent' if calinski > 1000 else 'good'
 print(f"\n  Inertia (Within-SS):       {inertia:.2f}")
 print(f"    └─ Sum of squared distances to centroids")
 
-# Cluster statistics
+ 
 print(f"\n📈 Cluster Distribution:")
 for cluster in sorted(rfm['Cluster'].unique()):
     count = len(rfm[rfm['Cluster'] == cluster])
@@ -62,7 +58,7 @@ for cluster in sorted(rfm['Cluster'].unique()):
     segment = rfm[rfm['Cluster'] == cluster]['Segment'].iloc[0]
     print(f"  Cluster {cluster} ({segment:20s}): {count:,} samples ({pct:.1f}%)")
 
-# Feature importance in clustering
+ 
 print(f"\n📊 Feature Statistics by Cluster:")
 print(f"{'Cluster':<10} {'Recency':>12} {'Frequency':>12} {'Monetary':>15}")
 print("-" * 52)
@@ -73,7 +69,7 @@ for cluster in sorted(rfm['Cluster'].unique()):
     m = cluster_data['Monetary'].mean()
     print(f"{cluster:<10} {r:>12.1f} {f:>12.1f} ${m:>14,.2f}")
 
-# Separation metrics
+ 
 print(f"\n🎯 Cluster Separation Analysis:")
 cluster0 = rfm[rfm['Cluster'] == 0][['Recency', 'Frequency', 'Monetary']].mean()
 cluster1 = rfm[rfm['Cluster'] == 1][['Recency', 'Frequency', 'Monetary']].mean()
@@ -81,9 +77,7 @@ print(f"  Mean Recency Difference:   {abs(cluster0['Recency'] - cluster1['Recenc
 print(f"  Mean Frequency Difference: {abs(cluster0['Frequency'] - cluster1['Frequency']):.1f} orders")
 print(f"  Mean Monetary Difference:  ${abs(cluster0['Monetary'] - cluster1['Monetary']):,.2f}")
 
-# ============================================================================
-# 2. ASSOCIATION RULES PERFORMANCE
-# ============================================================================
+
 print("\n" + "="*80)
 print("🔹 ASSOCIATION RULES MODEL (APRIORI)")
 print("-" * 80)
@@ -134,14 +128,12 @@ print(f"  High (60-80%):             {high:,} rules ({high/len(rules)*100:.1f}%)
 print(f"  Medium (40-60%):           {medium:,} rules ({medium/len(rules)*100:.1f}%)")
 print(f"  Low (<40%):                {low:,} rules ({low/len(rules)*100:.1f}%)")
 
-# Actionable rules
+ 
 actionable = len(rules[(rules['confidence'] >= 0.3) & (rules['lift'] >= 1.5)])
 print(f"\n💡 Actionable Rules:")
 print(f"  (Confidence ≥30% & Lift ≥1.5): {actionable:,} rules ({actionable/len(rules)*100:.1f}%)")
 
-# ============================================================================
-# 3. OVERALL MODEL PERFORMANCE SUMMARY
-# ============================================================================
+
 print("\n" + "="*80)
 print("✨ OVERALL MODEL PERFORMANCE SUMMARY")
 print("=" * 80)

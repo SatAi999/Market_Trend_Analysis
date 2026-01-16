@@ -1,10 +1,4 @@
-"""
-Data Preprocessing Module for Retail Analysis
-Author: Senior Data Scientist
-Date: January 2026
 
-This module handles data cleaning and preprocessing for the Online Retail II dataset.
-"""
 
 import pandas as pd
 import numpy as np
@@ -14,29 +8,13 @@ warnings.filterwarnings('ignore')
 
 
 class RetailDataPreprocessor:
-    """
-    A class to preprocess retail transaction data.
-    
-    This class handles data cleaning including:
-    - Removing canceled invoices
-    - Handling missing values
-    - Filtering invalid records
-    - Feature engineering
-    """
     
     def __init__(self, filepath):
-        """
-        Initialize the preprocessor with the dataset filepath.
-        
-        Args:
-            filepath (str): Path to the CSV file
-        """
         self.filepath = filepath
         self.df = None
         self.df_clean = None
         
     def load_data(self):
-        """Load the dataset from CSV file."""
         try:
             print("Loading dataset...")
             self.df = pd.read_csv(self.filepath, encoding='ISO-8859-1')
@@ -47,7 +25,6 @@ class RetailDataPreprocessor:
             raise
     
     def display_info(self):
-        """Display basic information about the dataset."""
         if self.df is None:
             print("✗ No data loaded. Please run load_data() first.")
             return
@@ -62,18 +39,6 @@ class RetailDataPreprocessor:
         print(f"\nSample Data:\n{self.df.head()}")
         
     def clean_data(self):
-        """
-        Clean the dataset according to business rules.
-        
-        Steps:
-        1. Remove canceled invoices (InvoiceNo starting with 'C')
-        2. Remove rows with missing CustomerID
-        3. Remove negative or zero Quantity
-        4. Remove negative or zero UnitPrice
-        5. Convert InvoiceDate to datetime
-        6. Create TotalPrice feature
-        7. Remove outliers
-        """
         if self.df is None:
             print("✗ No data loaded. Please run load_data() first.")
             return
@@ -162,12 +127,6 @@ class RetailDataPreprocessor:
         return self.df_clean
     
     def save_cleaned_data(self, output_path='data/online_retail_cleaned.csv'):
-        """
-        Save the cleaned dataset to a CSV file.
-        
-        Args:
-            output_path (str): Path where the cleaned data will be saved
-        """
         if self.df_clean is None:
             print("✗ No cleaned data available. Please run clean_data() first.")
             return
@@ -179,12 +138,10 @@ class RetailDataPreprocessor:
             print(f"✗ Error saving cleaned data: {e}")
     
     def get_cleaned_data(self):
-        """Return the cleaned dataframe."""
         return self.df_clean
 
 
 def main():
-    """Main execution function."""
     # Initialize preprocessor
     preprocessor = RetailDataPreprocessor('data/online_retail.csv')
     

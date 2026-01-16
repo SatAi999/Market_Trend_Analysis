@@ -1,10 +1,4 @@
-"""
-Customer Lifetime Value (CLV) Analysis Module
-Author: Senior Data Scientist
-Date: January 2026
 
-This module calculates Customer Lifetime Value and ranks customers.
-"""
 
 import pandas as pd
 import numpy as np
@@ -16,38 +10,12 @@ warnings.filterwarnings('ignore')
 
 
 class CLVAnalysis:
-    """
-    A class to calculate and analyze Customer Lifetime Value.
-    
-    Metrics calculated:
-    - Average Order Value (AOV)
-    - Purchase Frequency (PF)
-    - Customer Lifespan
-    - Customer Lifetime Value (CLV)
-    """
     
     def __init__(self, df):
-        """
-        Initialize CLV analysis with cleaned dataframe.
-        
-        Args:
-            df (pd.DataFrame): Cleaned retail transaction data
-        """
         self.df = df
         self.clv_df = None
         
     def calculate_clv(self, lifespan_years=3):
-        """
-        Calculate Customer Lifetime Value for each customer.
-        
-        CLV = (Average Order Value) × (Purchase Frequency) × (Customer Lifespan)
-        
-        Args:
-            lifespan_years (float): Expected customer lifespan in years
-        
-        Returns:
-            pd.DataFrame: CLV dataframe with metrics
-        """
         print("\n" + "="*60)
         print("CUSTOMER LIFETIME VALUE CALCULATION")
         print("="*60)
@@ -123,12 +91,6 @@ class CLVAnalysis:
         return customer_metrics
     
     def display_top_customers(self, top_n=20):
-        """
-        Display top customers by CLV.
-        
-        Args:
-            top_n (int): Number of top customers to display
-        """
         if self.clv_df is None:
             raise ValueError("CLV not calculated. Run calculate_clv() first.")
         
@@ -148,7 +110,6 @@ class CLVAnalysis:
         return top_customers
     
     def analyze_clv_segments(self):
-        """Analyze CLV segments in detail."""
         if self.clv_df is None:
             raise ValueError("CLV not calculated. Run calculate_clv() first.")
         
@@ -180,7 +141,6 @@ class CLVAnalysis:
         return segment_analysis
     
     def visualize_clv(self):
-        """Create comprehensive CLV visualizations."""
         print("\n" + "="*60)
         print("CREATING CLV VISUALIZATIONS")
         print("="*60)
@@ -266,15 +226,6 @@ class CLVAnalysis:
         plt.close()
     
     def identify_at_risk_customers(self, recency_threshold_days=180):
-        """
-        Identify high-value customers who haven't purchased recently.
-        
-        Args:
-            recency_threshold_days (int): Days since last purchase to flag as at-risk
-        
-        Returns:
-            pd.DataFrame: At-risk customers
-        """
         if self.clv_df is None:
             raise ValueError("CLV not calculated. Run calculate_clv() first.")
         
@@ -315,12 +266,6 @@ class CLVAnalysis:
         return at_risk
     
     def save_results(self, output_path='outputs/customer_clv.csv'):
-        """
-        Save CLV results to CSV.
-        
-        Args:
-            output_path (str): Output file path
-        """
         if self.clv_df is None:
             raise ValueError("No results to save.")
         
@@ -329,7 +274,6 @@ class CLVAnalysis:
 
 
 def main():
-    """Main execution function."""
     # Load cleaned data
     print("Loading cleaned data...")
     df = pd.read_csv('data/online_retail_cleaned.csv')

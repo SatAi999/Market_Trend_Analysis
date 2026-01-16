@@ -1,8 +1,4 @@
-"""
-Master Script to Run ALL ML Models & Generate Comprehensive Report
-Author: Senior Data Scientist
-Date: January 2026
-"""
+
 
 import os
 import sys
@@ -25,15 +21,10 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-def print_header(title):
-    """Print formatted header."""
-    print("\n" + "="*70)
-    print(f"  {title}")
-    print("="*70)
+
 
 
 def main():
-    """Execute complete ML pipeline."""
     start_time = time.time()
     
     print("\n" + "="*70)

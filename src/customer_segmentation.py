@@ -1,13 +1,4 @@
-"""
-Customer Segmentation Module using RFM Analysis and K-Means Clustering
-Author: Senior Data Scientist
-Date: January 2026
 
-This module performs customer segmentation using:
-- RFM (Recency, Frequency, Monetary) analysis
-- K-Means clustering
-- Silhouette and Elbow method for optimal clusters
-"""
 
 import pandas as pd
 import numpy as np
@@ -22,23 +13,8 @@ warnings.filterwarnings('ignore')
 
 
 class CustomerSegmentation:
-    """
-    A class to perform customer segmentation using RFM and K-Means clustering.
-    
-    Features:
-    - RFM calculation
-    - Feature scaling
-    - Optimal cluster determination
-    - Customer segment profiling
-    """
     
     def __init__(self, df):
-        """
-        Initialize segmentation with cleaned dataframe.
-        
-        Args:
-            df (pd.DataFrame): Cleaned retail transaction data
-        """
         self.df = df
         self.rfm_df = None
         self.rfm_scaled = None
@@ -47,15 +23,6 @@ class CustomerSegmentation:
         self.scaler = StandardScaler()
         
     def calculate_rfm(self, reference_date=None):
-        """
-        Calculate RFM (Recency, Frequency, Monetary) metrics for each customer.
-        
-        Args:
-            reference_date (datetime): Reference date for recency calculation
-        
-        Returns:
-            pd.DataFrame: RFM dataframe
-        """
         print("\n" + "="*60)
         print("RFM CALCULATION")
         print("="*60)
@@ -90,12 +57,6 @@ class CustomerSegmentation:
         return rfm
     
     def scale_features(self):
-        """
-        Scale RFM features using StandardScaler.
-        
-        Returns:
-            np.ndarray: Scaled features
-        """
         print("\n" + "="*60)
         print("FEATURE SCALING")
         print("="*60)
@@ -114,15 +75,6 @@ class CustomerSegmentation:
         return self.rfm_scaled
     
     def find_optimal_clusters(self, max_k=10):
-        """
-        Find optimal number of clusters using Elbow and Silhouette methods.
-        
-        Args:
-            max_k (int): Maximum number of clusters to test
-        
-        Returns:
-            int: Optimal number of clusters
-        """
         print("\n" + "="*60)
         print("FINDING OPTIMAL NUMBER OF CLUSTERS")
         print("="*60)
@@ -179,15 +131,6 @@ class CustomerSegmentation:
         return self.optimal_k
     
     def perform_clustering(self, n_clusters=None):
-        """
-        Perform K-Means clustering with specified number of clusters.
-        
-        Args:
-            n_clusters (int): Number of clusters (uses optimal_k if None)
-        
-        Returns:
-            np.ndarray: Cluster labels
-        """
         print("\n" + "="*60)
         print("PERFORMING K-MEANS CLUSTERING")
         print("="*60)
@@ -216,12 +159,6 @@ class CustomerSegmentation:
         return self.rfm_df['Cluster'].values
     
     def profile_segments(self):
-        """
-        Profile and label customer segments based on RFM characteristics.
-        
-        Returns:
-            pd.DataFrame: Segment profiles
-        """
         print("\n" + "="*60)
         print("CUSTOMER SEGMENT PROFILING")
         print("="*60)
@@ -276,7 +213,6 @@ class CustomerSegmentation:
         return segment_profile
     
     def visualize_segments(self):
-        """Create comprehensive segment visualizations."""
         print("\n" + "="*60)
         print("CREATING SEGMENT VISUALIZATIONS")
         print("="*60)
@@ -362,12 +298,6 @@ class CustomerSegmentation:
         plt.close()
     
     def save_results(self, output_path='outputs/customer_segments.csv'):
-        """
-        Save segmentation results to CSV.
-        
-        Args:
-            output_path (str): Output file path
-        """
         if self.rfm_df is None:
             raise ValueError("No results to save.")
         
@@ -376,7 +306,6 @@ class CustomerSegmentation:
 
 
 def main():
-    """Main execution function."""
     # Load cleaned data
     print("Loading cleaned data...")
     df = pd.read_csv('data/online_retail_cleaned.csv')
